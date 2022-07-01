@@ -1,7 +1,9 @@
 body {
-  background-color: rgb(253, 197, 0.2);
+  background-color: #ffaa4c;
+  background-size: cover;
   font-family: "Courier New", Courier, monospace;
 }
+
 h1 {
   text-align: center;
   font-weight: 600;
@@ -13,12 +15,15 @@ h4 {
 form {
   text-align: center;
 }
-button {
-  padding: 0;
+p {
+  margin: 0;
+}
+.list-group-item {
+  padding: 5px 10px;
 }
 
 .App {
-  max-width: 60%;
+  width: 500px;
   margin: 0 auto;
 }
 .App-section {
@@ -38,9 +43,6 @@ button {
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 2px;
   color: #0a08f5;
-}
-.shopping-item {
-  margin: 20px;
 }
 
 /* .App-header {

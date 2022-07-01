@@ -21,10 +21,10 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        <div className="App-section shadow p-3 mb-5 bg-body rounded">
+        <div className="App-section shadow p-3 bg-body rounded">
           <h1 className="text-primary">Shopping list</h1>
           <form onSubmit={handleSubmit}>
-            <div className="row">
+            <div className="row pt-2 pb-2">
               <div className="col-10">
                 <input
                   type="text"
@@ -34,7 +34,7 @@ function App() {
                   onChange={(e) => setItem(e.target.value)}
                 />
               </div>
-              <div className="col">
+              <div className="col-2">
                 <button type="submit" className="btn btn-primary">
                   Add
                 </button>
