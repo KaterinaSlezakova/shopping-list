@@ -4,29 +4,29 @@ import "./App.css";
 import List from "./components/List";
 
 function App() {
-  const [item, setItem] = useState("");
+  const [name, setName] = useState("");
   const [list, setList] = useState([]);
   const [editId, setEditId] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (item && isEditing) {
+    if (name && isEditing) {
       setList(
         list.map((item) => {
           if (item.id === editId) {
-            return { ...item, name: item };
+            return { ...item, title: name };
           }
           return item;
         })
       );
-      setItem("");
+      setName("");
       setEditId(null);
       setIsEditing(false);
     } else {
-      const newItem = { id: new Date().getTime().toString(), name: item };
+      const newItem = { id: new Date().getTime().toString(), title: name };
       setList([...list, newItem]);
-      setItem("");
+      setName("");
     }
   };
 
@@ -34,7 +34,7 @@ function App() {
     const unicItem = list.find((item) => item.id === id);
     setIsEditing(true);
     setEditId(id);
-    setItem(unicItem.name);
+    setName(unicItem.title);
   };
 
   const removeItem = (id) => {
@@ -52,10 +52,10 @@ function App() {
                 <input
                   type="text"
                   className="form-control"
-                  value={item}
+                  value={name}
                   autoFocus="on"
                   placeholder="Type an item..."
-                  onChange={(e) => setItem(e.target.value)}
+                  onChange={(e) => setName(e.target.value)}
                 />
               </div>
               <div className="col-2">
@@ -67,7 +67,7 @@ function App() {
           </form>
           {list.length > 0 && (
             <div className="item-container">
-              <List items={list} removeItem={removeItem} editItem={editItem} />
+              <List list={list} removeItem={removeItem} editItem={editItem} />
               <button
                 type="button"
                 className="btn btn-danger d-grid gap-2 col-8 mx-auto mt-3"
