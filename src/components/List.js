@@ -2,20 +2,20 @@ import React from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
 
-export default function List({ items, removeItem }) {
+export default function List({ items, removeItem, editItem }) {
   return (
     <div>
       {items.map((item) => {
         const { id, name } = item;
         return (
-          <ul class="list-group pb-2" key={id}>
-            <li class="list-group-item border-0 d-flex justify-content-evenly align-items-center">
+          <ul className="list-group pb-2" key={id}>
+            <li className="list-group-item border-0 d-flex justify-content-between align-items-center">
               <p>{name}</p>
               <div className="btn-container">
-                <button type="button" className="btn btn-danger btn-sm me-3">
+                <button type="button" className="btn btn-outline-danger btn-sm me-3" onClick={() => removeItem(id)}>
                   <FaTrash />
                 </button>
-                <button type="button" className="btn btn-warning btn-sm">
+                <button type="button" className="btn btn-outline-warning btn-sm" onClick={() => editItem(id)}>
                   <FaEdit />
                 </button>
               </div>
