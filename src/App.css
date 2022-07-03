@@ -1,5 +1,5 @@
 body {
-  background-color: #FFC54D;
+  background-color: #ffc54d;
   background-size: cover;
   font-family: "Courier New", Courier, monospace;
 }
@@ -22,17 +22,17 @@ p {
   padding: 5px 10px;
 }
 
-
 .App {
   max-width: 500px;
   margin: 50px auto;
+  align-items: center;
+  justify-content: center;
 }
 .App-section {
   padding: 30px 20px;
   display: block;
   justify-content: center;
   align-items: center;
- 
 }
 
 .App-footer {
@@ -40,7 +40,10 @@ p {
   text-align: center;
   font-family: Verdana, Geneva, Tahoma, sans-serif;
   letter-spacing: 2px;
-  color: #0a08f5;
+  color: #0D6EFD;
+}
+.App-footer :hover {
+  color: white;
 }
 
 /* .App-header {
