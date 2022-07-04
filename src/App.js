@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import List from "./components/List";
 import Alert from "./components/Alert";
 import { FaGithub } from "react-icons/fa";
@@ -6,12 +6,26 @@ import { SiNetlify } from "react-icons/si";
 
 import "./App.css";
 
+const getLocalStorage = () => {
+let list = localStorage.getItem("list");
+if (list) {
+  return list = JSON.parse(localStorage.getItem("list"));
+} else {
+  return [];
+}
+
+};
+
 function App() {
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
+  const [list, setList] = useState(getLocalStorage);
   const [editId, setEditId] = useState(null);
   const [isEditing, setIsEditing] = useState(false);
   const [alert, setAlert] = useState({ show: true, type: "", msg: "" });
+
+  useEffect(() => {
+    localStorage.setItem("list", JSON.stringify(list));
+  }, [list]);
 
   const removeAlert = () => {
     setAlert({ show: false, type: "", msg: "" });
@@ -68,7 +82,7 @@ function App() {
           <h1 className="text-primary">Shopping list</h1>
           <form onSubmit={handleSubmit}>
             <div className="d-flex flex-row justify-content-center pt-2 pb-3">
-              <div className="col-10">
+              <div className="col-8">
                 <input
                   type="text"
                   className="form-control"
