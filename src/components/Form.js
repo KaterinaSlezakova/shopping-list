@@ -40,7 +40,7 @@ export default function Form() {
     <div className="Form">
       <form onSubmit={handleSubmit}>
         <div className="d-flex flex-row justify-content-center pt-2 pb-3">
-          <div className="col-8">
+          <div className="col-7">
             <input
               type="text"
               className="form-control"
@@ -50,7 +50,7 @@ export default function Form() {
               onChange={(e) => setName(e.target.value)}
             />
           </div>
-          <div className="col-2">
+          <div className="col-3">
             <button type="submit" className="btn btn-primary">
               {!isEditing ? "Add" : "Edit"}
             </button>

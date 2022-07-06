@@ -62,7 +62,7 @@ function App() {
     <div className="App">
       <div className="container">
         {/* {alert.show && <Alert {...alert} list={list} setAlert={setAlert} />} */}
-        <div className="App-section shadow-lg p-3 mb-3 bg-body rounded">
+        <div className="App-section shadow-lg  mb-3 bg-body rounded">
           <Header />
           <Form />
         </div>

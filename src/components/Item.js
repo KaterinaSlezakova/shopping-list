@@ -12,27 +12,29 @@ export default function Item({ list, setList, editItem }) {
       {list.map((item) => {
         const { id, title } = item;
         return (
-          <ul className="list-group pb-2" key={id}>
-            <li className="list-group-item border-0 d-flex justify-content-between align-items-center">
+          <div className="row pb-2 justify-content-center" key={id}>
+            <div className="col-5">
               <p>{title}</p>
-              <div className="btn-container">
-                <button
-                  type="button"
-                  className="btn btn-outline-danger btn-sm me-3"
-                  onClick={() => removeItem(id)}
-                >
-                  <FaTrash />
-                </button>
-                <button
-                  type="button"
-                  className="btn btn-outline-warning btn-sm"
-                   onClick={() => editItem(id)}
-                >
-                  <FaEdit />
-                </button>
-              </div>
-            </li>
-          </ul>
+            </div>
+            <div className="col-2">
+              <button
+                type="button"
+                className="btn btn-outline-danger btn-sm "
+                onClick={() => removeItem(id)}
+              >
+                <FaTrash />
+              </button>
+            </div>
+            <div className="col-2">
+              <button
+                type="button"
+                className="btn btn-outline-warning btn-sm"
+                onClick={() => editItem(id)}
+              >
+                <FaEdit />
+              </button>
+            </div>
+          </div>
         );
       })}
     </div>
