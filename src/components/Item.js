@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { FaEdit } from "react-icons/fa";
 import { FaTrash } from "react-icons/fa";
+import { ListContext } from "./Form";
 
-export default function Item({ list, setList, editItem }) {
+export default function Item({ setList, editItem }) {
+  const list = useContext(ListContext);
+
   const removeItem = (id) => {
     setList(list.filter((item) => item.id !== id));
     // setAlert({ show: true, type: "danger", msg: "Item has been removed" });

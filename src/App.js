@@ -1,25 +1,15 @@
-import React from "react";
+import React, { useState, useContext } from "react";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import Alert from "./components/Alert";
+import { ListContext } from "./components/Form";
 
 import "./App.css";
 
-// const getLocalStorage = () => {
-//   let list = localStorage.getItem("list");
-//   if (list) {
-//     return (list = JSON.parse(localStorage.getItem("list")));
-//   } else {
-// //     return [];
-// //   }
-// };
 function App() {
- 
-// const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
-
-  // useEffect(() => {
-  //   localStorage.setItem("list", JSON.stringify(list));
-  // }, [list]);
+  const list = useContext(ListContext);
+  const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -61,8 +51,8 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {/* {alert.show && <Alert {...alert} list={list} setAlert={setAlert} />} */}
-        <div className="App-section shadow-lg  mb-3 bg-body rounded">
+        {alert.show && <Alert {...alert} list={list} setAlert={setAlert} />}
+        <div className="App-section shadow-lg mb-3 bg-body rounded">
           <Header />
           <Form />
         </div>
