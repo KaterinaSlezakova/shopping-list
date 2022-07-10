@@ -52,8 +52,8 @@ export default function Form() {
   };
 
   return (
-    <div className="Form">
-      <ListContext.Provider value={list}>
+    <ListContext.Provider value={list}>
+      <div className="Form">
         <form onSubmit={handleSubmit}>
           <div className="d-flex row justify-content-center pt-2 pb-3">
             <div className="col-9">
@@ -74,7 +74,7 @@ export default function Form() {
           </div>
         </form>
         <List setList={setList} editItem={editItem} />
-      </ListContext.Provider>
-    </div>
+      </div>{" "}
+    </ListContext.Provider>
   );
 }

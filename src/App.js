@@ -1,15 +1,17 @@
-import React, { useState, useContext } from "react";
+import React, { useState } from "react";
 import Form from "./components/Form";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import Alert from "./components/Alert";
-import { ListContext } from "./components/Form";
 
 import "./App.css";
 
 function App() {
-  const list = useContext(ListContext);
   const [alert, setAlert] = useState({ show: false, type: "", msg: "" });
+
+  const removeAlert = () => {
+    setAlert({ show: false, type: "", msg: "" });
+  };
 
   // const handleSubmit = (e) => {
   //   e.preventDefault();
@@ -51,7 +53,7 @@ function App() {
   return (
     <div className="App">
       <div className="container">
-        {alert.show && <Alert {...alert} list={list} setAlert={setAlert} />}
+        {alert.show && <Alert {...alert} removeAlert={removeAlert} />}
         <div className="App-section shadow-lg mb-3 bg-body rounded">
           <Header />
           <Form />
