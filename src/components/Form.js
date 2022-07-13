@@ -11,7 +11,27 @@ import List from "./List";
 // };
 export const ListContext = createContext();
 
-export default function Form() {
+const intialState = {
+  name: '',
+  list: [],
+  //...
+}
+
+const reducer = (state, action) => {
+  switch (action.type) {
+    case 'NAME_SET': return {
+      ...state,
+      
+me: action.name    }
+  }
+}
+
+export default funcation Form() {
+
+  // const [state, dispatch] = useReducer(reducer, initialArg, init);
+
+  const [state, dispatch] = useReducer(reducer, initialState);
+
   const [name, setName] = useState("");
   const [list, setList] = useState([]);
   const [editId, setEditId] = useState(null);
