@@ -1,5 +1,8 @@
-import React, { useState, createContext } from "react";
+import React, { useState, createContext, useReducer } from "react";
+import { FaAcquisitionsIncorporated } from "react-icons/fa";
 import List from "./List";
+
+export const ListContext = createContext();
 
 // const getLocalStorage = () => {
 //   let list = localStorage.getItem("list");
@@ -9,13 +12,37 @@ import List from "./List";
 //     return [];
 //   }
 // };
-export const ListContext = createContext();
 
+export const ACTIONS = {
+  ADD: "add",
+  CLEAR: "clear list",
+  REMOVE: "remove item",
+};
+
+export const reducer = (state, action) => {
+  switch (action.type) {
+    case ACTIONS.ADD:
+      return [...state, newItem(action.payload.name)];
+    case ACTIONS.CLEAR:
+    // return "clear list";
+    case ACTIONS.REMOVE:
+    // return "remove item";
+    default:
+      throw new Error("no matching action type");
+  }
+};
+function newItem(name) {
+  return { id: new Date().getTime().toString(), name: name, complete: false };
+}
+
+// const defaultState = { list: [], editID: null, isEditing: false };
 export default function Form() {
+  // const [list, setList] = useState([]);
+  // const [editId, setEditId] = useState(null);
+  // const [isEditing, setIsEditing] = useState(false);
+
   const [name, setName] = useState("");
-  const [list, setList] = useState([]);
-  const [editId, setEditId] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
+  const [state, dispatch] = useReducer(reducer, []);
 
   // useEffect(() => {
   //   localStorage.setItem("list", JSON.stringify(list));
@@ -23,25 +50,29 @@ export default function Form() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (!name) {
-      return "Please type an item";
-    } else if (name && isEditing) {
-      setList(
-        list.map((item) => {
-          if (editId === item.id) {
-            return { ...item, title: name };
-          }
-          return item;
-        })
-      );
-      setIsEditing(false);
-      setEditId(null);
-      setName("");
-    } else {
-      const definedList = { id: new Date().getTime().toString(), title: name };
-      setList([...list, definedList]);
+    if (name) {
+      dispatch({ type: ACTIONS.ADD, payload: { name: name } });
       setName("");
     }
+    // if (!name) {
+    //   return console.log("Please type an item");
+    // } else if (name && isEditing) {
+    //   setList(
+    //     list.map((item) => {
+    //       if (editId === item.id) {
+    //         return { ...item, title: name };
+    //       }
+    //       return item;
+    //     })
+    //   );
+    //   setIsEditing(false);
+    //   setEditId(null);
+    //   setName("");
+    // } else {
+    //   const definedList = { id: new Date().getTime().toString(), title: name };
+    //   setList([...list, definedList]);
+    //   setName("");
+    // }
   };
 
   const editItem = (id) => {

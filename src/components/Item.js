@@ -8,7 +8,7 @@ export default function Item({ setList, editItem }) {
 
   const removeItem = (id) => {
     setList(list.filter((item) => item.id !== id));
-    // setAlert({ show: true, type: "danger", msg: "Item has been removed" });
+  
   };
   return (
     <div className="Item">
