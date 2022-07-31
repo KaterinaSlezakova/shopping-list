@@ -7,7 +7,7 @@ export default function Item({ item, dispatch }) {
     <div className="Item">
       <div className="row pb-2 justify-content-center" key={item.id}>
         <div
-          className="col-5"
+          className="col-6"
           style={{
             fontWeight: "bold",
             textDecoration: item.complete ? "line-through" : "none",
@@ -18,7 +18,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-2">
           <button
             type="button"
-            className="btn btn-primary btn-sm "
+            className="btn btn-primary btn-sm"
             onClick={() =>
               dispatch({ type: ACTIONS.DELETE_ITEM, payload: { id: item.id } })
             }
@@ -26,7 +26,7 @@ export default function Item({ item, dispatch }) {
             <FaTrashAlt />
           </button>
         </div>
-        <div className="col-2">
+        <div className="col-1">
           <button
             type="button"
             className="btn btn-warning btn-sm"

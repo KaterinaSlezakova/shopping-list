@@ -1,28 +1,55 @@
 import { ACTIONS } from "./App";
 
-export const reducer = (items, action) => {
+export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM:
-      return [...items, newItem(action.payload.name)];
+      const newItems = [...state.items, action.payload];
+      return {
+        ...state,
+        items: newItems,
+        showAlert: true,
+        alertType: "success",
+        alertMsg: "Item added in list",
+      };
+
+    case ACTIONS.NO_VALUE:
+      return {
+        ...state,
+        showAlert: true,
+        alertType: "danger",
+        alertMsg: "Please type an item",
+      };
+
     case ACTIONS.DELETE_ITEM:
-      const filteredItems = items.filter(
+      const filteredItems = state.items.filter(
         (item) => item.id !== action.payload.id
       );
-      return filteredItems;
+      return {
+        ...state,
+        items: filteredItems,
+        showAlert: true,
+        alertType: "warning",
+        alertMsg: "Item has been removed",
+      };
     case ACTIONS.TOGGLE_ITEM:
-      const toggledItems = items.map((item) => {
+      const toggledItems = state.items.map((item) => {
         if (item.id === action.payload.id) {
-          return { ...item, complete: true };
+          return { ...item, complete: !item.complete };
         }
         return item;
       });
       return toggledItems;
     case ACTIONS.CLEAR_ALL:
-      return [];
+      return {
+        ...state,
+        items: [],
+        showAlert: true,
+        alertType: "info",
+        alertMsg: "List has been cleared",
+      };
+    case ACTIONS.CLOSE_ALERT:
+      return { ...state, showAlert: false };
     default:
       throw new Error("this is an error");
   }
 };
-function newItem(name) {
-  return { id: new Date().getTime().toString(), name: name, complete: false };
-}

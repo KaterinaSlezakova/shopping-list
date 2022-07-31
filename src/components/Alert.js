@@ -1,19 +1,17 @@
-import React, { useContext, useEffect } from "react";
-import { ListContext } from "./Form";
+import React, { useEffect } from "react";
 
-export default function Alert({ msg, type, removeAlert }) {
-  const list = useContext(ListContext);
+export default function Alert({ alertMsg, alertType, items, closeAlert }) {
 
   useEffect(() => {
     const timeout = setTimeout(() => {
-      removeAlert();
+      closeAlert();
     }, 4000);
     return () => clearTimeout(timeout);
-  }, [list]);
+  }, [items]);
 
   return (
-    <div className={`alert alert-${type} text-center`} role="alert">
-      {msg}
+    <div className={`alert alert-${alertType} text-center`} role="alert">
+      {alertMsg}
     </div>
   );
 }
