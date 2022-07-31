@@ -1,45 +1,43 @@
-import React, { useContext } from "react";
-import { FaEdit } from "react-icons/fa";
-import { FaTrash } from "react-icons/fa";
-import { ListContext } from "./Form";
+import React from "react";
+import { FaCheck, FaTrashAlt } from "react-icons/fa";
+import { ACTIONS } from "../App";
 
-export default function Item({ setList, editItem }) {
-  const list = useContext(ListContext);
-
-  const removeItem = (id) => {
-    setList(list.filter((item) => item.id !== id));
-    // setAlert({ show: true, type: "danger", msg: "Item has been removed" });
-  };
+export default function Item({ item, dispatch }) {
   return (
     <div className="Item">
-      {list.map((item) => {
-        const { id, title } = item;
-        return (
-          <div className="row pb-2 justify-content-center" key={id}>
-            <div className="col-5">
-              <p>{title}</p>
-            </div>
-            <div className="col-2">
-              <button
-                type="button"
-                className="btn btn-outline-danger btn-sm "
-                onClick={() => removeItem(id)}
-              >
-                <FaTrash />
-              </button>
-            </div>
-            <div className="col-2">
-              <button
-                type="button"
-                className="btn btn-outline-warning btn-sm"
-                onClick={() => editItem(id)}
-              >
-                <FaEdit />
-              </button>
-            </div>
-          </div>
-        );
-      })}
+      <div className="row pb-2 justify-content-center" key={item.id}>
+        <div
+          className="col-6"
+          style={{
+            fontWeight: "bold",
+            textDecoration: item.complete ? "line-through" : "none",
+          }}
+        >
+          <p>{item.name}</p>
+        </div>
+        <div className="col-2">
+          <button
+            type="button"
+            className="btn btn-primary btn-sm"
+            onClick={() =>
+              dispatch({ type: ACTIONS.DELETE_ITEM, payload: { id: item.id } })
+            }
+          >
+            <FaTrashAlt />
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            type="button"
+            className="btn btn-warning btn-sm"
+            onClick={() =>
+              dispatch({ type: ACTIONS.TOGGLE_ITEM, payload: { id: item.id } })
+            }
+          >
+            <FaCheck />
+          </button>
+        </div>
+      </div>
     </div>
   );
 }
