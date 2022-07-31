@@ -38,7 +38,10 @@ export const reducer = (state, action) => {
         }
         return item;
       });
-      return toggledItems;
+      return {
+        ...state,
+        items: toggledItems,
+      };
     case ACTIONS.CLEAR_ALL:
       return {
         ...state,
