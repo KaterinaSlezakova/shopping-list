@@ -1,4 +1,4 @@
-import { ACTIONS } from "./App";
+import { ACTIONS } from "./actions";
 
 export const reducer = (state, action) => {
   switch (action.type) {
@@ -51,7 +51,7 @@ export const reducer = (state, action) => {
         alertMsg: "List has been cleared",
       };
     case ACTIONS.CLOSE_ALERT:
-      return { ...state, showAlert: false };
+      return { ...state, showAlert: false, alertType: "", alertMsg: "" };
     default:
       throw new Error("this is an error");
   }

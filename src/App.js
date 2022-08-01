@@ -4,23 +4,10 @@ import Header from "./components/Header";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
+import { defaultState } from "./defaultState";
+import { ACTIONS } from "./actions";
 
 import "./App.css";
-
-export const ACTIONS = {
-  ADD_ITEM: "add item",
-  DELETE_ITEM: "delete item",
-  TOGGLE_ITEM: "toggle item",
-  CLEAR_ALL: "clear list",
-  CLOSE_ALERT: "close alert",
-  NO_VALUE: "no value",
-};
-const defaultState = {
-  items: [],
-  showAlert: false,
-  alertType: "",
-  alertMsg: "",
-};
 
 export default function App() {
   const [name, setName] = useState("");
@@ -32,7 +19,7 @@ export default function App() {
       const newItem = {
         id: new Date().getTime().toString(),
         complete: false,
-        name
+        name,
       };
       dispatch({ type: ACTIONS.ADD_ITEM, payload: newItem });
       setName("");
@@ -47,7 +34,13 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        {state.showAlert && <Alert items={state} closeAlert={closeAlert} />}
+        {state.showAlert && (
+          <Alert
+            type={state.alertType}
+            msg={state.alertMsg}
+            closeAlert={closeAlert}
+          />
+        )}
         <div className="App-section shadow-lg mb-3 bg-body rounded">
           <Header />
           <form onSubmit={handleSubmit}>
