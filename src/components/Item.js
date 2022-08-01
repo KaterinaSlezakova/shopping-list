@@ -1,6 +1,6 @@
 import React from "react";
 import { FaCheck, FaTrashAlt } from "react-icons/fa";
-import { ACTIONS } from "../App";
+import { ACTIONS } from "../actions";
 
 export default function Item({ item, dispatch }) {
   return (
