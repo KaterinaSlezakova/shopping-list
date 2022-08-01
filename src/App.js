@@ -41,7 +41,7 @@ export default function App() {
             closeAlert={closeAlert}
           />
         )}
-        <div className="App-section shadow-lg mb-3 bg-body rounded">
+        <div className="App-section shadow">
           <Header />
           <form onSubmit={handleSubmit}>
             <div className="d-flex row justify-content-center pt-2 pb-3">
