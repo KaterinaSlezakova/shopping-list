@@ -1,17 +1,36 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
-import { defaultState } from "./defaultState";
+// import { defaultState } from "./defaultState";
 import { ACTIONS } from "./actions";
 
 import "./App.css";
 
+export const getLocalStorage = () => {
+  let items = localStorage.getItem("items");
+  if (items) {
+    return (items = JSON.parse(localStorage.items));
+  } else {
+    return [];
+  }
+};
+const defaultState = {
+  items: getLocalStorage(),
+  showAlert: false,
+  alertType: "",
+  alertMsg: "",
+};
+
 export default function App() {
   const [name, setName] = useState("");
   const [state, dispatch] = useReducer(reducer, defaultState);
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(state.items));
+  }, [state.items]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -21,7 +40,10 @@ export default function App() {
         complete: false,
         name,
       };
-      dispatch({ type: ACTIONS.ADD_ITEM, payload: newItem });
+      dispatch({
+        type: ACTIONS.ADD_ITEM,
+        payload: newItem,
+      });
       setName("");
     } else {
       dispatch({ type: ACTIONS.NO_VALUE });
@@ -64,8 +86,12 @@ export default function App() {
             {state.items.length > 0 && (
               <button
                 type="button"
-                className="btn btn-danger d-grid gap-2 col-8 mx-auto mt-3"
-                onClick={() => dispatch({ type: ACTIONS.CLEAR_ALL })}
+                className="btn btn-danger d-grid gap-2 col-8 mx-auto mt-3 shadow"
+                onClick={() =>
+                  dispatch({
+                    type: ACTIONS.CLEAR_ALL,
+                  })
+                }
               >
                 Clear list
               </button>

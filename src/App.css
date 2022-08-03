@@ -1,31 +1,30 @@
 body {
-  background-image: url(./image/swimmer.jpg);
+  background-color: #0d6efd;
   background-size: cover;
   font-family: "Courier New", Courier, monospace;
   background-position: center;
+  background-repeat: no-repeat;
 }
 
 h1 {
   text-align: center;
   font-weight: 600;
-  text-shadow: 10px 5px 20px goldenrod;
+  text-shadow: 0px 10px 15px rgba(125, 124, 124, 0.9);
   margin-bottom: 20px;
 }
-h4 {
-  display: inline;
-  margin-right: 30px;
-}
+
 form {
   text-align: center;
   margin-bottom: 20px;
 }
 p {
   margin: 0;
+  font-size: 17px;
 }
 
 .App {
   max-width: 500px;
-  margin: 50px auto;
+  margin: 70px auto;
   align-items: center;
   justify-content: center;
 }
@@ -34,9 +33,10 @@ p {
   display: block;
   justify-content: center;
   align-items: center;
-  background-color: rgb(255, 255, 255, 0.9);
-  border-radius: 5px;
-  box-shadow: 10px 10px 50px white;
+  background-color: rgb(255, 255, 255);
+  border-radius: 7px;
+  /* box-shadow: 5px 5px 5px 5px rgb(189, 188, 188); */
+
 }
 .App-footer {
   font-size: 12px;
@@ -46,7 +46,8 @@ p {
   color: white;
   margin-top: 10px;
 }
-.App-footer :hover {
+
+.App-footer a {
   color: white;
 }
 

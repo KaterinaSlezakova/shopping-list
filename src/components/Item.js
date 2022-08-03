@@ -18,7 +18,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-2">
           <button
             type="button"
-            className="btn btn-primary btn-sm"
+            className="btn btn-primary btn-sm shadow"
             onClick={() =>
               dispatch({ type: ACTIONS.DELETE_ITEM, payload: { id: item.id } })
             }
@@ -29,7 +29,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-1">
           <button
             type="button"
-            className="btn btn-warning btn-sm"
+            className="btn btn-warning btn-sm shadow"
             onClick={() =>
               dispatch({ type: ACTIONS.TOGGLE_ITEM, payload: { id: item.id } })
             }
