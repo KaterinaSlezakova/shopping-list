@@ -1,6 +1,11 @@
 import React from "react";
+<<<<<<< Updated upstream
 import { FaCheck, FaTrashAlt } from "react-icons/fa";
 import { ACTIONS } from "../App";
+=======
+import { FaCheck, FaTrashAlt, FaEdit } from "react-icons/fa";
+import { ACTIONS } from "../actions";
+>>>>>>> Stashed changes
 
 export default function Item({ item, dispatch }) {
   return (
@@ -15,7 +20,7 @@ export default function Item({ item, dispatch }) {
         >
           <p>{item.name}</p>
         </div>
-        <div className="col-2">
+        <div className="col-1">
           <button
             type="button"
             className="btn btn-primary btn-sm"
@@ -31,10 +36,27 @@ export default function Item({ item, dispatch }) {
             type="button"
             className="btn btn-warning btn-sm"
             onClick={() =>
-              dispatch({ type: ACTIONS.TOGGLE_ITEM, payload: { id: item.id } })
+              dispatch({
+                type: ACTIONS.TOGGLE_ITEM,
+                payload: { id: item.id },
+              })
             }
           >
             <FaCheck />
+          </button>
+        </div>
+        <div className="col-1">
+          <button
+            type="button"
+            className="btn btn-info btn-sm shadow"
+            onClick={() =>
+              dispatch({
+                type: ACTIONS.EDIT_ITEM,
+                payload: { id: item.id },
+              })
+            }
+          >
+            <FaEdit />
           </button>
         </div>
       </div>

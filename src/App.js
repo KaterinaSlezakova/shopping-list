@@ -4,6 +4,11 @@ import Header from "./components/Header";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
+<<<<<<< Updated upstream
+=======
+import { ACTIONS } from "./actions";
+// import { defaultState } from "./defaultState";
+>>>>>>> Stashed changes
 
 import "./App.css";
 
@@ -26,9 +31,23 @@ export default function App() {
   const [name, setName] = useState("");
   const [state, dispatch] = useReducer(reducer, defaultState);
 
+<<<<<<< Updated upstream
+=======
+
+  useEffect(() => {
+    localStorage.setItem("items", JSON.stringify(state.items));
+  }, [state.items]);
+
+  const closeAlert = () => {
+    dispatch({ type: ACTIONS.CLOSE_ALERT });
+  };
+
+>>>>>>> Stashed changes
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (name) {
+    if (!name) {
+      dispatch({ type: ACTIONS.NO_VALUE });
+    } else {
       const newItem = {
         id: new Date().getTime().toString(),
         complete: false,
@@ -36,14 +55,8 @@ export default function App() {
       };
       dispatch({ type: ACTIONS.ADD_ITEM, payload: newItem });
       setName("");
-    } else {
-      dispatch({ type: ACTIONS.NO_VALUE });
     }
   };
-  const closeAlert = () => {
-    dispatch({ type: ACTIONS.CLOSE_ALERT });
-  };
-
   return (
     <div className="App">
       <div className="container">

@@ -11,6 +11,20 @@ export const reducer = (state, action) => {
         alertType: "success",
         alertMsg: "Item added in list",
       };
+    case ACTIONS.EDIT_ITEM:
+      const newItem = state.items.find((item) => item.id == action.payload.id);
+      const updatedItem = {
+        id: new Date().getTime().toString(),
+        complete: false,
+        name: newItem.name,
+      };
+      return {
+        ...state,
+        items: [...state.items, updatedItem],
+        showAlert: true,
+        alertType: "success",
+        alertMsg: "Item updated",
+      };
 
     case ACTIONS.NO_VALUE:
       return {
