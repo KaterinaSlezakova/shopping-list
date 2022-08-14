@@ -6,4 +6,5 @@ export const ACTIONS = {
   CLOSE_ALERT: "close alert",
   NO_VALUE: "no value",
   EDIT_ITEM: "edit item",
+  SAVE_EDITED_ITEM: "save an edited item"
 };

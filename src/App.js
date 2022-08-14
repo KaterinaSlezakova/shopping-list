@@ -1,38 +1,17 @@
-import React, { useState, useReducer } from "react";
+import React, { useState, useReducer, useEffect } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
-<<<<<<< Updated upstream
-=======
 import { ACTIONS } from "./actions";
-// import { defaultState } from "./defaultState";
->>>>>>> Stashed changes
+import { defaultState } from "./defaultState";
 
 import "./App.css";
-
-export const ACTIONS = {
-  ADD_ITEM: "add item",
-  DELETE_ITEM: "delete item",
-  TOGGLE_ITEM: "toggle item",
-  CLEAR_ALL: "clear list",
-  CLOSE_ALERT: "close alert",
-  NO_VALUE: "no value",
-};
-const defaultState = {
-  items: [],
-  showAlert: false,
-  alertType: "",
-  alertMsg: "",
-};
 
 export default function App() {
   const [name, setName] = useState("");
   const [state, dispatch] = useReducer(reducer, defaultState);
-
-<<<<<<< Updated upstream
-=======
 
   useEffect(() => {
     localStorage.setItem("items", JSON.stringify(state.items));
@@ -42,16 +21,19 @@ export default function App() {
     dispatch({ type: ACTIONS.CLOSE_ALERT });
   };
 
->>>>>>> Stashed changes
   const handleSubmit = (e) => {
     e.preventDefault();
     if (!name) {
       dispatch({ type: ACTIONS.NO_VALUE });
+    }
+    if (state.isEditing) {
+      dispatch({ type: ACTIONS.SAVE_EDITED_ITEM, payload: name });
+      setName("");
     } else {
       const newItem = {
         id: new Date().getTime().toString(),
         complete: false,
-        name
+        name,
       };
       dispatch({ type: ACTIONS.ADD_ITEM, payload: newItem });
       setName("");
@@ -60,7 +42,13 @@ export default function App() {
   return (
     <div className="App">
       <div className="container">
-        {state.showAlert && <Alert items={state} closeAlert={closeAlert} />}
+        {state.showAlert && (
+          <Alert
+            alertType={state.alertType}
+            alertMsg={state.alertMsg}
+            closeAlert={closeAlert}
+          />
+        )}
         <div className="App-section shadow-lg mb-3 bg-body rounded">
           <Header />
           <form onSubmit={handleSubmit}>
@@ -79,7 +67,7 @@ export default function App() {
           </form>
           <div className="item-container">
             {state.items.map((item) => {
-              return <Item dispatch={dispatch} key={item.id} item={item} />;
+              return <Item dispatch={dispatch} item={item} key={item.id} />;
             })}
             {state.items.length > 0 && (
               <button

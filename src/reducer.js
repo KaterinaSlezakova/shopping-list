@@ -1,5 +1,4 @@
-import { ACTIONS } from "./App";
-
+import { ACTIONS } from "./actions";
 export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM:
@@ -12,18 +11,33 @@ export const reducer = (state, action) => {
         alertMsg: "Item added in list",
       };
     case ACTIONS.EDIT_ITEM:
-      const newItem = state.items.find((item) => item.id == action.payload.id);
+      const findItem = state.items.find(
+        (item) => item.id === action.payload.id
+      );
+
+      return {
+        ...state,
+        editedItem: findItem,
+        isEditing: true,
+      };
+    case ACTIONS.SAVE_EDITED_ITEM:
+      const editedItem = state.items.find(
+        (item) => item.id === state.editedItem.id
+      );
       const updatedItem = {
+        ...editedItem,
         id: new Date().getTime().toString(),
+        name: action.payload.name,
         complete: false,
-        name: newItem.name,
       };
       return {
         ...state,
         items: [...state.items, updatedItem],
         showAlert: true,
-        alertType: "success",
-        alertMsg: "Item updated",
+        alertType: "primary",
+        alertMsg: "Item has been edited",
+        editedItem: null,
+        isEditing: false,
       };
 
     case ACTIONS.NO_VALUE:
