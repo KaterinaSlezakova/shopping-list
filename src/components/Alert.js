@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 
+<<<<<<< HEAD
 export default function Alert({ msg, type, closeAlert }) {
+=======
+export default function Alert({ alertMsg, alertType, closeAlert }) {
+
+
+>>>>>>> new-branch
   useEffect(() => {
     const timeout = setTimeout(() => {
       closeAlert();

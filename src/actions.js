@@ -5,4 +5,9 @@ export const ACTIONS = {
   CLEAR_ALL: "clear list",
   CLOSE_ALERT: "close alert",
   NO_VALUE: "no value",
+<<<<<<< HEAD
+=======
+  EDIT_ITEM: "edit item",
+  SAVE_EDITED_ITEM: "save an edited item"
+>>>>>>> new-branch
 };
