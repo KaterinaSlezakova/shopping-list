@@ -2,7 +2,10 @@ import { ACTIONS } from "./actions";
 export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM:
-      const newItems = [...state.items, action.payload];
+      const newItems = {
+        ...state.items,
+        [action.payload.newItem.id]: action.payload.newItem,
+      };
       return {
         ...state,
         items: newItems,
@@ -11,9 +14,10 @@ export const reducer = (state, action) => {
         alertMsg: "Item added in list",
       };
     case ACTIONS.EDIT_ITEM:
-      const findItem = state.items.find(
-        (item) => item.id === action.payload.id
-      );
+      // const findItem = state.items.find(
+      //   (item) => item.id === action.payload.id
+      // );
+      const findItem = state.items[action.payload.id];
 
       return {
         ...state,
@@ -21,18 +25,19 @@ export const reducer = (state, action) => {
         isEditing: true,
       };
     case ACTIONS.SAVE_EDITED_ITEM:
-      const editedItem = state.items.find(
-        (item) => item.id === state.editedItem.id
-      );
+      // const item = state.items.find((item) => item.id === state.editedItem.id);
+      const item = state.items[state.editedItem.id];
       const updatedItem = {
-        ...editedItem,
-        id: new Date().getTime().toString(),
+        ...item,
         name: action.payload.name,
-        complete: false,
       };
+
       return {
         ...state,
-        items: [...state.items, updatedItem],
+        items: {
+          ...state.items,
+          [updatedItem.id]: updatedItem,
+        },
         showAlert: true,
         alertType: "primary",
         alertMsg: "Item has been edited",
@@ -49,9 +54,10 @@ export const reducer = (state, action) => {
       };
 
     case ACTIONS.DELETE_ITEM:
-      const filteredItems = state.items.filter(
-        (item) => item.id !== action.payload.id
-      );
+      // const filteredItems = state.items.filter(
+      //   (item) => item.id !== action.payload.id
+      // );
+      const { [action.payload.id]: omittedItem, ...filteredItems } = state.items;
       return {
         ...state,
         items: filteredItems,
@@ -60,20 +66,22 @@ export const reducer = (state, action) => {
         alertMsg: "Item has been removed",
       };
     case ACTIONS.TOGGLE_ITEM:
-      const toggledItems = state.items.map((item) => {
-        if (item.id === action.payload.id) {
-          return { ...item, complete: !item.complete };
-        }
-        return item;
-      });
+      const toggledItem = state.items[action.payload.id];
+
       return {
         ...state,
-        items: toggledItems,
+        items: {
+          ...state.items,
+          [action.payload.id]: {
+            ...toggledItem,
+            complete: !toggledItem.complete,
+          }
+        },
       };
     case ACTIONS.CLEAR_ALL:
       return {
         ...state,
-        items: [],
+        items: {},
         showAlert: true,
         alertType: "info",
         alertMsg: "List has been cleared",

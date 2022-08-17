@@ -1,5 +1,5 @@
 export const defaultState = {
-  items: [],
+  items: {},
   showAlert: false,
   alertType: "",
   alertMsg: "",

@@ -47,7 +47,7 @@ export default function Item({ item, dispatch }) {
             onClick={() =>
               dispatch({
                 type: ACTIONS.EDIT_ITEM,
-                payload: { id: item.id },
+                payload: {id: item.id},
               })
             }
           >

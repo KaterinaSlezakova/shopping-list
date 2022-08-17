@@ -27,7 +27,7 @@ export default function App() {
       dispatch({ type: ACTIONS.NO_VALUE });
     }
     if (state.isEditing) {
-      dispatch({ type: ACTIONS.SAVE_EDITED_ITEM, payload: name });
+      dispatch({ type: ACTIONS.SAVE_EDITED_ITEM, payload: { name } });
       setName("");
     } else {
       const newItem = {
@@ -35,7 +35,7 @@ export default function App() {
         complete: false,
         name,
       };
-      dispatch({ type: ACTIONS.ADD_ITEM, payload: newItem });
+      dispatch({ type: ACTIONS.ADD_ITEM, payload: { newItem } });
       setName("");
     }
   };
@@ -66,10 +66,10 @@ export default function App() {
             </div>
           </form>
           <div className="item-container">
-            {state.items.map((item) => {
+            {Object.values(state.items).map((item) => {
               return <Item dispatch={dispatch} item={item} key={item.id} />;
             })}
-            {state.items.length > 0 && (
+            {Object.values(state.items).length > 0 && (
               <button
                 type="button"
                 className="btn btn-danger d-grid gap-2 col-8 mx-auto mt-3"
