@@ -4,8 +4,7 @@ import Header from "./components/Header";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
-<<<<<<< HEAD
-// import { defaultState } from "./defaultState";
+import { defaultState } from "./defaultState";
 import { ACTIONS } from "./actions";
 
 import "./App.css";
@@ -18,20 +17,7 @@ export const getLocalStorage = () => {
     return [];
   }
 };
-const defaultState = {
-  items: getLocalStorage(),
-  showAlert: false,
-  alertType: "",
-  alertMsg: "",
-};
 
-=======
-import { ACTIONS } from "./actions";
-import { defaultState } from "./defaultState";
-
-import "./App.css";
-
->>>>>>> new-branch
 export default function App() {
   const [name, setName] = useState("");
   const [state, dispatch] = useReducer(reducer, defaultState);
@@ -40,26 +26,6 @@ export default function App() {
     localStorage.setItem("items", JSON.stringify(state.items));
   }, [state.items]);
 
-<<<<<<< HEAD
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    if (name) {
-      const newItem = {
-        id: new Date().getTime().toString(),
-        complete: false,
-        name,
-      };
-      dispatch({
-        type: ACTIONS.ADD_ITEM,
-        payload: newItem,
-      });
-      setName("");
-    } else {
-      dispatch({ type: ACTIONS.NO_VALUE });
-    }
-  };
-=======
->>>>>>> new-branch
   const closeAlert = () => {
     dispatch({ type: ACTIONS.CLOSE_ALERT });
   };
@@ -87,21 +53,13 @@ export default function App() {
       <div className="container">
         {state.showAlert && (
           <Alert
-<<<<<<< HEAD
-            type={state.alertType}
-            msg={state.alertMsg}
-            closeAlert={closeAlert}
-          />
-        )}
-        <div className="App-section shadow">
-=======
+            // isEditing={state.isEditing}
             alertType={state.alertType}
             alertMsg={state.alertMsg}
             closeAlert={closeAlert}
           />
         )}
         <div className="App-section shadow-lg mb-3 bg-body rounded">
->>>>>>> new-branch
           <Header />
           <form onSubmit={handleSubmit}>
             <div className="d-flex row justify-content-center pt-2 pb-3">

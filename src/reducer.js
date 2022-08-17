@@ -1,8 +1,4 @@
 import { ACTIONS } from "./actions";
-<<<<<<< HEAD
-
-=======
->>>>>>> new-branch
 export const reducer = (state, action) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM:

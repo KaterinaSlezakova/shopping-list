@@ -1,9 +1,5 @@
 import React from "react";
-<<<<<<< HEAD
-import { FaCheck, FaTrashAlt } from "react-icons/fa";
-=======
 import { FaCheck, FaTrashAlt, FaEdit } from "react-icons/fa";
->>>>>>> new-branch
 import { ACTIONS } from "../actions";
 
 export default function Item({ item, dispatch }) {
@@ -22,11 +18,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-1">
           <button
             type="button"
-<<<<<<< HEAD
-            className="btn btn-primary btn-sm shadow"
-=======
             className="btn btn-secondary btn-sm shadow-lg"
->>>>>>> new-branch
             onClick={() =>
               dispatch({ type: ACTIONS.DELETE_ITEM, payload: { id: item.id } })
             }
@@ -37,11 +29,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-1">
           <button
             type="button"
-<<<<<<< HEAD
-            className="btn btn-warning btn-sm shadow"
-=======
             className="btn btn-secondary btn-sm shadow-lg"
->>>>>>> new-branch
             onClick={() =>
               dispatch({
                 type: ACTIONS.TOGGLE_ITEM,
@@ -59,7 +47,7 @@ export default function Item({ item, dispatch }) {
             onClick={() =>
               dispatch({
                 type: ACTIONS.EDIT_ITEM,
-                payload: {id: item.id},
+                payload: { id: item.id },
               })
             }
           >
