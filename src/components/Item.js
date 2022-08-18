@@ -7,7 +7,7 @@ export default function Item({ item, dispatch }) {
     <div className="Item">
       <div className="row pb-2 justify-content-center">
         <div
-          className="col-4"
+          className="col-5"
           style={{
             fontWeight: "bold",
             textDecoration: item.complete ? "line-through" : "none",

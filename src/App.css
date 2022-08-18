@@ -28,13 +28,15 @@ button {
 .btn-light,
 .btn-warning {
   border-radius: 10px 5px;
-
 }
-
+.btn-danger {
+  font-weight: bold;
+  letter-spacing: 5px;
+}
 
 .App {
   max-width: 500px;
-  margin: 50px auto;
+  margin: 20px auto;
   align-items: center;
   justify-content: center;
 }
@@ -46,7 +48,6 @@ button {
   background-color: rgb(255, 255, 255);
   border-radius: 7px;
   /* box-shadow: 5px 5px 5px 5px rgb(189, 188, 188); */
-
 }
 .App-footer {
   font-size: 12px;
@@ -60,7 +61,6 @@ button {
 .App-footer a {
   color: white;
 }
-
 
 /* .App-header {
   background-color: #282c34;
