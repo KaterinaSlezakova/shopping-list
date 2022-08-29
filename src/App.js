@@ -9,15 +9,6 @@ import { ACTIONS } from "./actions";
 
 import "./App.css";
 
-export const getLocalStorage = () => {
-  let items = localStorage.getItem("items");
-  if (items) {
-    return (items = JSON.parse(localStorage.items));
-  } else {
-    return [];
-  }
-};
-
 export default function App() {
   const [name, setName] = useState("");
   const [state, dispatch] = useReducer(reducer, defaultState);
@@ -34,6 +25,7 @@ export default function App() {
     e.preventDefault();
     if (!name) {
       dispatch({ type: ACTIONS.NO_VALUE });
+      return;
     }
     if (state.isEditing) {
       dispatch({ type: ACTIONS.SAVE_EDITED_ITEM, payload: { name } });
@@ -53,7 +45,7 @@ export default function App() {
       <div className="container">
         {state.showAlert && (
           <Alert
-            // isEditing={state.isEditing}
+            isEditing={state.isEditing}
             alertType={state.alertType}
             alertMsg={state.alertMsg}
             closeAlert={closeAlert}
@@ -61,8 +53,11 @@ export default function App() {
         )}
         <div className="App-section shadow-lg mb-3 bg-body rounded">
           <Header />
-          <form onSubmit={handleSubmit}>
-            <div className="d-flex row justify-content-center pt-2 pb-3">
+          <form
+            onSubmit={handleSubmit}
+            className="d-flex justify-content-center pt-2 pb-3"
+          >
+            <div className="row">
               <div className="col-10">
                 <input
                   type="text"
@@ -72,6 +67,11 @@ export default function App() {
                   placeholder="Type an item..."
                   onChange={(e) => setName(e.target.value)}
                 />
+              </div>
+              <div className="col-1">
+                <button type="submit" className="btn btn-light">
+                  {state.isEditing ? "Edit" : "Add"}
+                </button>
               </div>
             </div>
           </form>
