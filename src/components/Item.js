@@ -4,8 +4,8 @@ import { ACTIONS } from "../actions";
 
 export default function Item({ item, dispatch }) {
   return (
-    <div className="Item">
-      <div className="row pb-2 justify-content-center">
+    <div className="Item pb-2 d-flex justify-content-center">
+      <div className="row">
         <div
           className="col-5"
           style={{
@@ -15,7 +15,7 @@ export default function Item({ item, dispatch }) {
         >
           <p>{item.name}</p>
         </div>
-        <div className="col-2">
+        <div className="col-2 justify-content-start">
           <button
             type="button"
             className="btn btn-warning btn-sm"
@@ -29,7 +29,7 @@ export default function Item({ item, dispatch }) {
         <div className="col-2">
           <button
             type="button"
-            className="btn btn-light btn-sm"
+            className="btn btn-warning btn-sm"
             onClick={() =>
               dispatch({
                 type: ACTIONS.EDIT_ITEM,
@@ -40,10 +40,10 @@ export default function Item({ item, dispatch }) {
             <FaEdit />
           </button>
         </div>
-        <div className="col-1">
+        <div className="col-2">
           <button
             type="button"
-            className="btn btn-info btn-sm"
+            className="btn btn-warning btn-sm"
             onClick={() =>
               dispatch({
                 type: ACTIONS.TOGGLE_ITEM,

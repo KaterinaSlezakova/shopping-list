@@ -12,20 +12,21 @@ export const reducer = (state, action) => {
         showAlert: true,
         alertType: "success",
         alertMsg: "Item added in list",
+        editedItem: null,
+        isEditing: false,
       };
     case ACTIONS.EDIT_ITEM:
-      // const findItem = state.items.find(
-      //   (item) => item.id === action.payload.id
-      // );
       const findItem = state.items[action.payload.id];
 
       return {
         ...state,
+        showAlert: true,
+        alertMsg: `You are editing ${findItem.name.toUpperCase()}`,
+        alertType: "info",
         editedItem: findItem,
         isEditing: true,
       };
     case ACTIONS.SAVE_EDITED_ITEM:
-      // const item = state.items.find((item) => item.id === state.editedItem.id);
       const item = state.items[state.editedItem.id];
       const updatedItem = {
         ...item,
@@ -51,19 +52,23 @@ export const reducer = (state, action) => {
         showAlert: true,
         alertType: "danger",
         alertMsg: "Please type an item",
+        editedItem: null,
+        isEditing: false,
       };
 
     case ACTIONS.DELETE_ITEM:
-      // const filteredItems = state.items.filter(
-      //   (item) => item.id !== action.payload.id
-      // );
-      const { [action.payload.id]: omittedItem, ...filteredItems } = state.items;
+      const {
+        [action.payload.id]: omittedItem,
+        ...filteredItems
+      } = state.items;
       return {
         ...state,
         items: filteredItems,
         showAlert: true,
-        alertType: "warning",
+        alertType: "danger",
         alertMsg: "Item has been removed",
+        // editedItem: null,
+        // isEditing: false,
       };
     case ACTIONS.TOGGLE_ITEM:
       const toggledItem = state.items[action.payload.id];
@@ -75,8 +80,13 @@ export const reducer = (state, action) => {
           [action.payload.id]: {
             ...toggledItem,
             complete: !toggledItem.complete,
-          }
+          },
         },
+        // showAlert: true,
+        // alertType: "secondary",
+        // alertMsg: "You toggled an item",
+        // // editedItem: null,
+        // // isEditing: false,
       };
     case ACTIONS.CLEAR_ALL:
       return {
@@ -85,9 +95,17 @@ export const reducer = (state, action) => {
         showAlert: true,
         alertType: "info",
         alertMsg: "List has been cleared",
+        // editedItem: null,
+        // isEditing: false,
       };
     case ACTIONS.CLOSE_ALERT:
-      return { ...state, showAlert: false, alertType: "", alertMsg: "" };
+      return {
+        ...state,
+        showAlert: false,
+        alertType: "",
+        alertMsg: "",
+        isEditing: false,
+      };
     default:
       throw new Error("this is an error");
   }

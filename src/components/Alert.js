@@ -1,11 +1,13 @@
 import React, { useEffect } from "react";
 
-export default function Alert({ alertMsg, alertType, closeAlert }) {
+export default function Alert({ alertMsg, alertType, closeAlert, isEditing }) {
   useEffect(() => {
+    if (!isEditing) {
       const timeout = setTimeout(() => {
-      closeAlert();
-    },4000);
-    return () => clearTimeout(timeout);
+        closeAlert();
+      }, 4000);
+      return () => clearTimeout(timeout);
+    }
   }, []);
 
   return (

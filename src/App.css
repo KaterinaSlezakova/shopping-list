@@ -1,9 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+}
 body {
   background-color: #0d6efd;
   background-size: cover;
   font-family: "Courier New", Courier, monospace;
-  background-position: center;
-  background-repeat: no-repeat;
+  /* background-position: center;
+  background-repeat: no-repeat; */
 }
 
 h1 {
@@ -11,6 +15,7 @@ h1 {
   font-weight: 600;
   text-shadow: 0px 10px 15px rgba(125, 124, 124, 0.9);
   margin-bottom: 20px;
+  letter-spacing: 5px;
 }
 
 form {
@@ -18,14 +23,14 @@ form {
   margin-bottom: 20px;
 }
 p {
-  margin: 0;
+  margin-right: 30px;
+  margin-left: 50px;
   font-size: 17px;
 }
 button {
   box-shadow: 0px 5px 10px rgba(125, 124, 124, 0.8);
 }
-.btn-info,
-.btn-light,
+
 .btn-warning {
   border-radius: 10px 5px;
 }
@@ -33,11 +38,17 @@ button {
   font-weight: bold;
   letter-spacing: 5px;
 }
+.btn-light {
+  font-weight: bold;
+  display: flex;
+  margin-left: -10px;
+}
 
 .App {
   max-width: 500px;
   margin: 20px auto;
   align-items: center;
+  display:flex;
   justify-content: center;
 }
 .App-section {
