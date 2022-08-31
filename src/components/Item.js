@@ -7,7 +7,7 @@ export default function Item({ item, dispatch }) {
     <div className="Item pb-2 d-flex justify-content-center">
       <div className="row">
         <div
-          className="col-5"
+          className="col-6"
           style={{
             fontWeight: "bold",
             textDecoration: item.complete ? "line-through" : "none",
@@ -15,7 +15,7 @@ export default function Item({ item, dispatch }) {
         >
           <p>{item.name}</p>
         </div>
-        <div className="col-2 justify-content-start">
+        <div className="col-2">
           <button
             type="button"
             className="btn btn-warning btn-sm"
