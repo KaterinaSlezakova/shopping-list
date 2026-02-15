@@ -63,7 +63,7 @@ export default function App() {
                   type="text"
                   className="form-control"
                   value={name}
-                  autoFocus="on"
+                  autoFocus="true"
                   placeholder="Type an item..."
                   onChange={(e) => setName(e.target.value)}
                 />
