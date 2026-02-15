@@ -1,12 +1,11 @@
 import React, { useState, useReducer, useEffect } from "react";
 import Footer from "./components/Footer";
 import Header from "./components/Header";
+import { defaultState } from "./defaultState";
 import { reducer } from "./reducer";
 import Item from "./components/Item";
 import Alert from "./components/Alert";
-import { defaultState } from "./defaultState";
 import { ACTIONS } from "./actions";
-
 import "./App.css";
 
 export default function App() {

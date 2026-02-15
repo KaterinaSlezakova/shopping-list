@@ -13,11 +13,14 @@ export type StateType = {
 };
 
 const getLocalStorage = {
-  storedItems: () => {
-    let items = JSON.parse(localStorage.getItem("items"));
-    if (items) {
-      return items;
-    } else {
+  storedItems: (): Record<string, ItemType> => {
+    const stored = localStorage.getItem("items");
+
+    if (!stored) return {};
+
+    try {
+      return JSON.parse(stored) as Record<string, ItemType>;
+    } catch {
       return {};
     }
   },
