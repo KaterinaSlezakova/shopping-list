@@ -28,6 +28,7 @@ export const reducer = (state: StateType, action: any) => {
         isEditing: true,
       };
     case ACTIONS.SAVE_EDITED_ITEM:
+      if (!state.editedItem) return state;
       const item = state.items[state.editedItem.id];
       const updatedItem = {
         ...item,
