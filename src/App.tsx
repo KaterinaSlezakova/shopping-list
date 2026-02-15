@@ -21,7 +21,7 @@ export default function App() {
     dispatch({ type: ACTIONS.CLOSE_ALERT });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!name) {
       dispatch({ type: ACTIONS.NO_VALUE });
