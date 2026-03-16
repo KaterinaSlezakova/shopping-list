@@ -2,7 +2,23 @@ import React from "react";
 import { FaCheck, FaTrash, FaEdit } from "react-icons/fa";
 import { ACTIONS } from "../actions";
 
-export default function Item({ item, dispatch }) {
+interface ItemType {
+  id: number;
+  name: string;
+  complete: boolean;
+}
+interface actionType {
+  type: string;
+  payload: {
+    id: number;
+  };
+}
+interface ItemProps {
+    item: ItemType;
+    dispatch: React.Dispatch<actionType>;
+  }
+
+export default function Item({ item, dispatch }: ItemProps) {
   return (
     <div className="Item pb-2 d-flex justify-content-center">
       <div className="row">
