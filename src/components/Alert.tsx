@@ -1,6 +1,12 @@
 import React, { useEffect } from "react";
 
-export default function Alert({ alertMsg, alertType, closeAlert, isEditing }) {
+interface AlertProps {
+  alertMsg: string;
+  alertType: string;
+  closeAlert: () => void;
+  isEditing: boolean;
+}
+export default function Alert({ alertMsg, alertType, closeAlert, isEditing }: AlertProps) {
   useEffect(() => {
     if (!isEditing) {
       const timeout = setTimeout(() => {
@@ -8,7 +14,7 @@ export default function Alert({ alertMsg, alertType, closeAlert, isEditing }) {
       }, 4000);
       return () => clearTimeout(timeout);
     }
-  }, []);
+  },[isEditing, closeAlert]);
 
   return (
     <div className={`alert alert-${alertType} text-center`} role="alert">
