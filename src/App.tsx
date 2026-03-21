@@ -22,10 +22,13 @@ export default function App() {
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    if (!name) {
+    const cleanedName = name.trim()
+
+    if (!cleanedName){
       dispatch({ type: ACTIONS.NO_VALUE });
       return;
     }
+    
     if (state.isEditing) {
       dispatch({ type: ACTIONS.SAVE_EDITED_ITEM, payload: { name } });
       setName("");
