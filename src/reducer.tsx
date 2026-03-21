@@ -81,7 +81,7 @@ export const reducer = (state: StateType, action: any) => {
           ...state.items,
           [action.payload.id]: {
             ...toggledItem,
-            complete: !toggledItem.completed,
+            complete: !toggledItem.complete,
           },
         },
         // showAlert: true,
