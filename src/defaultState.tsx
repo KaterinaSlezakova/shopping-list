@@ -1,7 +1,7 @@
 export type ItemType = {
-  id: string;
+  id: number;
   name: string;
-  completed: boolean;
+  complete: boolean;
 };
 export type StateType = {
   items: Record<string, ItemType>; 

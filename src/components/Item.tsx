@@ -1,12 +1,9 @@
 import React from "react";
-import { FaCheck, FaTrash, FaEdit } from "react-icons/fa";
+import { ItemType } from "../defaultState";
+import { FaCheck, FaTrash, FaEdit } from "react-icons/fa";  
 import { ACTIONS } from "../actions";
 
-interface ItemType {
-  id: number;
-  name: string;
-  complete: boolean;
-}
+
 interface actionType {
   type: string;
   payload: {
