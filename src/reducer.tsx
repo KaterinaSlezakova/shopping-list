@@ -1,6 +1,6 @@
-import { ACTIONS } from "./actions";
+import { ACTIONS, Action } from "./actions";
 import { StateType } from "./defaultState";
-export const reducer = (state: StateType, action: any) => {
+export const reducer = (state: StateType, action: Action) => {
   switch (action.type) {
     case ACTIONS.ADD_ITEM:
       const newItems = {
