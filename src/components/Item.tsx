@@ -1,18 +1,11 @@
 import React from "react";
 import { ItemType } from "../defaultState";
 import { FaCheck, FaTrash, FaEdit } from "react-icons/fa";  
-import { ACTIONS } from "../actions";
+import { ACTIONS, Action } from "../actions";
 
-
-interface actionType {
-  type: string;
-  payload: {
-    id: number;
-  };
-}
 interface ItemProps {
     item: ItemType;
-    dispatch: React.Dispatch<actionType>;
+    dispatch: React.Dispatch<Action>;
   }
 
 export default function Item({ item, dispatch }: ItemProps) {
