@@ -34,7 +34,7 @@ export default function App() {
       setName("");
     } else {
       const newItem = {
-        id: new Date().getTime().toString(),
+        id: Date.now(),
         complete: false,
         name,
       };
