@@ -1,5 +1,5 @@
 ## 🛒 Shopping List App
-*Simple and intuitive shopping list application built with React and TypeScript.*
+*Simple and intuitive shopping list application built in VS Code with React and TypeScript.*
 *It allows users to manage their items efficiently with a clean and user-friendly interface.* 
 
 ![App Screenshot](./src/image/screenshot.png)
